@@ -6,12 +6,19 @@ const AddItem = ({title, addItem}) => {
 
     const [text, setText] = useState('');
 
+    this.myTextInput = React.createRef();
+
     const onChange = textValue => setText(textValue);
+
+    const onPress = () => {
+        addItem(text);
+        this.myTextInput.current.clear();
+      }
 
   return (
     <View>
-        <TextInput placeholder="Add Item" style= {styles.input} onChangeText={onChange}/>
-        <TouchableOpacity style={styles.btn} onPress={() => addItem(text)}>
+        <TextInput placeholder="Add Item" style= {styles.input} onChangeText={onChange} ref={this.myTextInput} />
+        <TouchableOpacity style={styles.btn} onPress={() => onPress()}>
             <Text style={styles.btnText}>
                 <Icon name="plus" size={20}/>
                 Add Item
