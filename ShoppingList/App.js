@@ -14,21 +14,27 @@ const App = () => {
     {id: uuid(), text: 'Cookies'},
   ]);
 
-  const deleteItem = (id) => {
+  const deleteItem = id => {
     setItems(prevItems =>{
       return prevItems.filter(item => item.id != id);
     });
-  }
+  };
 
   const addItem = (text) => {
     if(!text){
-      Alert.alert('Error', 'Please enter an item to add', {text: 'Ok'});
+      Alert.alert(
+        'Input Error',
+        'Please Enter an item to add',
+        [
+          {text: 'OK'},
+        ],
+      );
     } else {
       setItems(prevItems => {
         return [{id: uuid(), text}, ...prevItems];
-      })
+      });
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -40,7 +46,7 @@ const App = () => {
       />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
