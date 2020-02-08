@@ -4,23 +4,24 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 const AddItem = ({title, addItem}) => {
 
-    const [text, setText] = useState('');
+    let myTextInput = React.createRef();
 
-    this.myTextInput = React.createRef();
+    const [text, setText] = useState('');
 
     const onChange = textValue => setText(textValue);
 
     const onPress = () => {
         addItem(text);
-        this.myTextInput.current.clear();
+        setText('');
+        myTextInput.current.clear();
       }
 
   return (
     <View>
-        <TextInput placeholder="Add Item" style= {styles.input} onChangeText={onChange} ref={this.myTextInput} />
+        <TextInput placeholder="Add Item" style= {styles.input} onChangeText={onChange} ref={myTextInput} />
         <TouchableOpacity style={styles.btn} onPress={() => onPress()}>
             <Text style={styles.btnText}>
-                <Icon name="plus" size={20}/>
+                <Icon name="plus" size={20} style={styles.icon}/>
                 Add Item
             </Text>
         </TouchableOpacity>
@@ -43,6 +44,9 @@ const styles = StyleSheet.create({
         color: 'darkslateblue',
         fontSize: 20,
         textAlign: 'center'
+    },
+    icon: {
+        padding: 25
     }
 });
 
